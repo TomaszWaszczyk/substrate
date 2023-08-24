@@ -27,7 +27,7 @@ use frame_support::{
 	traits::{ConstU32, ConstU64, Contains},
 };
 use sp_runtime::{BuildStorage, TokenError};
-
+use node_primitives::{AccountId};
 type Block = frame_system::mocking::MockBlockU32<Test>;
 
 frame_support::construct_runtime!(
@@ -84,7 +84,7 @@ impl Config for Test {
 	type WeightInfo = ();
 }
 
-use pallet_balances::Call as BalancesCall;
+use pallet_balances::{Call as BalancesCall, Account};
 
 pub fn new_test_ext() -> sp_io::TestExternalities {
 	let mut t = frame_system::GenesisConfig::<Test>::default().build_storage().unwrap();
@@ -704,4 +704,7 @@ fn multisig_handles_no_preimage_after_all_approve() {
 }
 
 #[test]
-fn multisig_reentrancy_attack_test() {}
+fn multisig_reentrancy_attack_test() {
+	let account_1: AccountId = 0.1;
+	let account_2: AccountId = 0.2;
+}
