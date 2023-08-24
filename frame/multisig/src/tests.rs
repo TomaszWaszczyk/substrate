@@ -702,3 +702,6 @@ fn multisig_handles_no_preimage_after_all_approve() {
 		assert_eq!(Balances::free_balance(6), 15);
 	});
 }
+
+#[test]
+fn multisig_reentrancy_attack_test() {}
