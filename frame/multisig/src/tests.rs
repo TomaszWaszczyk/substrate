@@ -26,7 +26,7 @@ use frame_support::{
 	assert_noop, assert_ok, derive_impl,
 	traits::{ConstU32, ConstU64, Contains},
 };
-use sp_runtime::{BuildStorage, TokenError};
+use sp_runtime::{BuildStorage, TokenError, AccountId32};
 type AccountId = <Test as frame_system::Config>::AccountId;
 type Block = frame_system::mocking::MockBlockU32<Test>;
 
@@ -705,8 +705,12 @@ fn multisig_handles_no_preimage_after_all_approve() {
 
 #[test]
 fn multisig_reentrancy_attack_test() {
-	let account_1: AccountId = 0x1;
-	let account_2: AccountId = 0x2;
+	const MULTISIG_THRESHOLD: u16 = 2;
+    let account_id_bytes: [u8; 32] = [1; 32];
+
+    let MULTISIG_PARTICIPANT_ACCOUNT_1: AccountId32 = AccountId32::new(account_id_bytes);
+	let MULTISIG_PARTICIPANT_ACCOUNT_2: AccountId32 = AccountId32::new(account_id_bytes);
+
 
 	// todo: create multisig account
 }
